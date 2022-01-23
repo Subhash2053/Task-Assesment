@@ -48,7 +48,7 @@ jobs:
           command: ./vendor/bin/phpunit
   deploy:
      docker:
-       - image: clientapp
+       - image: subhash2053/clientapp
          auth:
            username: subhash2053
            password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference

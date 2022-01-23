@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
-    private  $filePath =  '';
+    private $filePath =  '';
 
     public function __construct()
     {
@@ -19,14 +19,15 @@ class ClientController extends Controller
         if (file_exists($this->filePath)) {
             $file = fopen($this->filePath, 'r');
             if ($readable) {
-            $headers = fgetcsv($file);
+                $headers = fgetcsv($file);
             }
             $i = 1;
-            while (($row = fgetcsv($file, 200, ",")) !== FALSE) {
+            while (($row = fgetcsv($file, 200, ",")) !== false) {
                 if ($readable) {
                     $item['id'] = $i;
-                    foreach ($row as $key => $value)
+                    foreach ($row as $key => $value) {
                         $item[$headers[$key]] = $value ?: null;
+                    }
                     $data[] = $item;
                     $i++;
                 } else {
@@ -47,7 +48,6 @@ class ClientController extends Controller
 
     public function store(Request $request)
     {
-
         $request->validate([
             'name' => 'required',
             'email' => 'required|email',
@@ -66,8 +66,8 @@ class ClientController extends Controller
        
         $file = fopen($this->filePath, 'a+');
         
-        if(count($old_data) ==0 ){
-        $columns = array(
+        if (count($old_data) ==0) {
+            $columns = array(
             'name',
             'gender',
             'phone',
@@ -79,8 +79,8 @@ class ClientController extends Controller
             'mode_of_contact'
         );
 
-        fputcsv($file, $columns);
-    }
+            fputcsv($file, $columns);
+        }
         $new_data = [
             'name' => $name,
             'gender' => $gender,

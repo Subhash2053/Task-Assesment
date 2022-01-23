@@ -47,7 +47,11 @@ jobs:
           name: "Run Tests"
           command: ./vendor/bin/phpunit
   deploy:
-     
+     docker:
+       - image: clientapp
+         auth:
+           username: subhash2053
+           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
      steps:
        - checkout
        - run:

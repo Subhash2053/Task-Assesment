@@ -26,7 +26,6 @@ class ClientTest extends TestCase
 
     public function testClientGet()
     {
-
         $response = $this->getJson('/api/client');
 
 
@@ -36,16 +35,6 @@ class ClientTest extends TestCase
 
     public function testClientPost()
     {
-        $faker = Factory::create();
-        $name = $faker->name;
-        $gender = $faker->randomElement(['male', 'female', 'other']);
-        $phone = $faker->phoneNumber;
-        $email = $faker->email;
-        $nationality = $faker->country;
-        $address = $faker->Address;
-        $education = $faker->text;
-        $dob = date('2014-02-25');
-        $mode_of_contact = $faker->randomElement(['email', 'phone', 'none']);
         $response = $this->postJson('/api/client/store', [
             'name' => $this->name,
             'gender' => $this->gender,
@@ -62,7 +51,8 @@ class ClientTest extends TestCase
         $response->assertStatus(200)
             ->assertExactJson([
                 'message' => "Data saved Successfully",
-            ]);;
+            ]);
+        ;
     }
 
 

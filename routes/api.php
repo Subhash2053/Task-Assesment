@@ -19,5 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/client',[ClientController::class, 'getlist']);
-Route::post('/client/store',[ClientController::class, 'store']);
+Route::get('/client', [ClientController::class, 'getlist']);
+Route::post('/client/store', [ClientController::class, 'store']);

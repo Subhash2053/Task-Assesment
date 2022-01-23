@@ -51,7 +51,7 @@ class ClientController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'phone' => 'required|numeric',
+            'phone' => 'required',
         ]);
         $name = $request->name;
         $gender = $request->gender;
@@ -98,6 +98,6 @@ class ClientController extends Controller
 
         fclose($file);
        
-        return response()->json(['message' => 'Data saved'], 200);
+        return response()->json(['message' => 'Data saved Successfully'], 200);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ClientFormRequest;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -46,13 +47,8 @@ class ClientController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(ClientFormRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required',
-        ]);
         $name = $request->name;
         $gender = $request->gender;
         $phone = $request->phone;

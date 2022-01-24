@@ -41,32 +41,31 @@ jobs:
             cp .env.example .env
             php artisan key:generate
 
-     
       # run tests with phpunit
       - run:
           name: "Run Tests"
           command: ./vendor/bin/phpunit
   deploy:
-     docker:
-       - image: subhash2053/clientapp
-         auth:
-           username: subhash2053
-           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-     steps:
-       - checkout
-       - run:
-           name: Deploy Main to Heroku
-           command: |
-             git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git main
+    docker:
+      - image: subhash2053/clientapp
+        auth:
+          username: subhash2053
+          password: $DOCKERHUB_PASSWORD # context / project UI env-var reference
+    steps:
+      - checkout
+      - run:
+          name: Deploy Main to Heroku
+          command: |
+            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git main
 
 workflows:
-   version: 2
-   build-deploy:
-     jobs:
-       - build
-       - deploy:
-           requires:
-             - build # only run deploy-via-git job if the build job has completed
-           filters:
-             branches:
-               only: main # only run deploy-via-git job on main branch
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build # only run deploy-via-git job if the build job has completed
+          filters:
+            branches:
+              only: main # only run deploy-via-git job on main branch

@@ -86,10 +86,11 @@ export default function ClientForm(props) {
                 break;
 
             case "phone":
-                if (minMaxLength(value, 9)) {
+                if (!value.match(/^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g)) {
                     currentFormErrors[
                         name
-                    ] = `phone should have minimum 9 characters`;
+                    ] = `phone number is invalid`;
+
                 } else {
                     delete currentFormErrors[name];
                 }
@@ -185,7 +186,7 @@ export default function ClientForm(props) {
                     <div>
                         <TextField
                             className={
-                                formErrors && formErrors.name ? "Mui-error" : ""
+                                formErrors && formErrors.name ? "error" : ""
                             }
                             fullWidth
                             type="text"
@@ -205,7 +206,7 @@ export default function ClientForm(props) {
                             <RadioGroup
                                 className={
                                     formErrors && formErrors.gender
-                                        ? "Mui-error"
+                                        ? "error"
                                         : ""
                                 }
                                 aria-labelledby="Gender"
@@ -235,7 +236,7 @@ export default function ClientForm(props) {
                         <TextField
                             className={
                                 formErrors && formErrors.phone
-                                    ? "Mui-error"
+                                    ? "error"
                                     : ""
                             }
                             fullWidth
@@ -256,7 +257,7 @@ export default function ClientForm(props) {
                             fullWidth
                             className={
                                 formErrors && formErrors.email
-                                    ? "Mui-error"
+                                    ? "error"
                                     : ""
                             }
                             type="email"
@@ -274,7 +275,7 @@ export default function ClientForm(props) {
                         <TextField
                             className={
                                 formErrors && formErrors.address
-                                    ? "Mui-error"
+                                    ? "error"
                                     : ""
                             }
                             fullWidth
@@ -292,7 +293,7 @@ export default function ClientForm(props) {
                         <TextField
                             className={
                                 formErrors && formErrors.nationality
-                                    ? "Mui-error"
+                                    ? "error"
                                     : ""
                             }
                             fullWidth
@@ -311,7 +312,7 @@ export default function ClientForm(props) {
                             <DatePicker
                                 className={
                                     formErrors && formErrors.dob
-                                        ? "Mui-error"
+                                        ? "error"
                                         : ""
                                 }
                                 openTo="year"
@@ -332,7 +333,7 @@ export default function ClientForm(props) {
                         <TextField
                             className={
                                 formErrors && formErrors.education
-                                    ? "Mui-error"
+                                    ? "error"
                                     : ""
                             }
                             fullWidth
@@ -353,7 +354,7 @@ export default function ClientForm(props) {
                             <Select
                                 className={
                                     formErrors && formErrors.mode_of_contact
-                                        ? "Mui-error"
+                                        ? "error"
                                         : ""
                                 }
                                 labelId="mode_of_contact"

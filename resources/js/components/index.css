@@ -19,7 +19,7 @@
   .error-message{
     color: red;
   }
-   .error {
-    border: 2px solid red !important;
-  }
+    .error div fieldset {
+    border-color: red !important;
+   }
   

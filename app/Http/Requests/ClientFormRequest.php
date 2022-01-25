@@ -32,7 +32,7 @@ class ClientFormRequest extends FormRequest
                     'phone' => 'required',
                     'address' => 'required',
                     'nationality' => 'required',
-                    'dob' => 'required|date',
+                    'dob' => 'required',
                     'education' => 'required',
                     'mode_of_contact' =>'required',
                 ];
